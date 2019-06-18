@@ -1,17 +1,27 @@
 'use strict'
 
 const centerRule = ({ total, activePage }) => {
-  if (activePage - 1 <= 0) {
-    return 1
-  }
-
-  if (activePage === total) {
-    return activePage - 2
-  }
-  return activePage - 1
+  return activePage - 1 <= 0
+    ? 1 : activePage === total
+      ? activePage - 2 : activePage - 1
 }
 
-const pagination = ({ total, activePage }) => {
+const isNumber = (value) => typeof value === 'number'
+
+const validate = ({ total, activePage }) => {
+  if (!isNumber(total)) {
+    throw new TypeError('total should be a number')
+  }
+
+  if (!isNumber(activePage)) {
+    throw new TypeError('activePage should be a number')
+  }
+}
+
+const pagination = ({ total = 1, activePage = 1 } = {}) => {
+
+  validate({ total, activePage })
+
   if (total < 6) {
     return Array.from({ length: total }, (_, i) => i + 1)
   }
@@ -46,8 +56,6 @@ const pagination = ({ total, activePage }) => {
       lastPage
     ]
   }
-
-  console.log(pages)
 
   firstPage = pages[0]
   secondPage = pages[1]
