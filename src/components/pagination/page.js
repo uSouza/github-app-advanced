@@ -2,12 +2,18 @@
 
 import React from 'react'
 
-const Page = ({ page, pageLink }) => {
-  const Component = page === '...' ? 'span' : 'a'
-  const href = page === '...' ? null : pageLink
+const Dots = ({ className }) => <span className={className}>...</span>
+
+const Page = ({ page, pageLink, onClick }) => {
+  const Component = page === '...' ? Dots : 'a'
+
+  const handleClick = !onClick ? null : (e) => {
+    e.preventDefault()
+    onClick(page)
+  }
 
   return (
-    <Component href={href}>
+    <Component href={pageLink} onClick={handleClick} className='pagination-link'>
       {page}
     </Component>
   )

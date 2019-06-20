@@ -2,6 +2,7 @@
 
 import React, { PropTypes } from 'react'
 import './repos.css'
+import Pagination from 'components/pagination'
 
 const Repos = ({ className, title, repos }) => (
   <div className={`repos-list ${className}`}>
@@ -13,6 +14,7 @@ const Repos = ({ className, title, repos }) => (
         </li>
       ))}
     </ul>
+    <Pagination total={10} activePage={3} />
   </div>
 )
 

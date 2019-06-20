@@ -1,4 +1,20 @@
 {
+  "scripts": {
+    "start": "webpack-dashboard -- node server.js",
+    "test": "jest --coverage",
+    "test:watch": "yarn test -- --watch",
+    "lint": "standard --verbose | snazzy",
+    "lint:fix": "standard --fix",
+    "lint:watch": "gulp",
+    "build": "cross-env NODE_ENV=production webpack --progress --config webpack/prod.config -p",
+    "storybook": "start-storybook -p 6006 -c storybook",
+    "build-storybook": "build-storybook -c storybook"
+  },
+
+  "standard": {
+    "globals": ["test", "it", "describe"]
+  },
+
   "devDependencies": {
     "@kadira/storybook": "^2.21.0",
     "babel-core": "6.10.4",
@@ -24,23 +40,10 @@
     "webpack-dev-server": "1.14.1",
     "webpack-validator": "2.2.2"
   },
+  
   "dependencies": {
     "@fdaciuk/ajax": "^3.0.4",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
-  },
-  "scripts": {
-    "start": "webpack-dashboard -- node server.js",
-    "test": "jest --coverage",
-    "test:watch": "yarn test -- --watch",
-    "lint": "standard --verbose | snazzy",
-    "lint:fix": "standard --fix",
-    "lint:watch": "gulp",
-    "build": "cross-env NODE_ENV=production webpack --progress --config webpack.prod.config -p",
-    "storybook": "start-storybook -p 6006 -c storybook",
-    "build-storybook": "build-storybook -c storybook"
-  },
-  "standard": {
-    "globals": ["test", "it", "describe"]
   }
 }
