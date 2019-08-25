@@ -14,19 +14,15 @@ module.exports = validate({
 
   plugins: [
     new ExtractTextPlugin('[name]-[hash].css'),
-
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': '"production"'
       }
     }),
-
     new HtmlPlugin(common.htmlPluginConfig('template-dev.html')),
-
     new webpack.optimize.UglifyJsPlugin({
       compress: { warnings: false }
     }),
-
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurrenceOrderPlugin()
   ],
@@ -42,6 +38,5 @@ module.exports = validate({
       })
     ]
   },
-
   resolve: common.resolve
 })

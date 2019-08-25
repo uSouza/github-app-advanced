@@ -14,6 +14,7 @@ const AppContent = ({
   isFetching,
   handleSearch,
   getRepos,
+  handlePagination,
   getStarred
 }) => (
   <div className='app'>
@@ -23,33 +24,40 @@ const AppContent = ({
     {!!userinfo && <Actions getRepos={getRepos} getStarred={getStarred} />}
 
     <div className='repos-container'>
-      {!!repos.length &&
+      {!!repos.repos.length &&
         <Repos
           className='repos'
           title='Repositórios:'
           repos={repos}
+          handlePagination={(clicked) => handlePagination('repos', clicked)}
         />
       }
-
-      {!!starred.length &&
+      {!!starred.repos.length &&
         <Repos
           className='starred'
           title='Favoritos:'
           repos={starred}
+          handlePagination={(clicked) => handlePagination('starred', clicked)}
         />
       }
     </div>
   </div>
 )
 
+const reposPropTypesShape = {
+  repos: PropTypes.array.isRequired,
+  pagination: PropTypes.object
+}
+
 AppContent.propTypes = {
   userinfo: PropTypes.object,
-  repos: PropTypes.array.isRequired,
-  starred: PropTypes.array.isRequired,
+  repos: PropTypes.shape(reposPropTypesShape),
+  starred: PropTypes.shape(reposPropTypesShape),
   isFetching: PropTypes.bool.isRequired,
   handleSearch: PropTypes.func.isRequired,
   getRepos: PropTypes.func.isRequired,
-  getStarred: PropTypes.func.isRequired
+  getStarred: PropTypes.func.isRequired,
+  handlePagination: PropTypes.func.isRequired
 }
 
 export default AppContent

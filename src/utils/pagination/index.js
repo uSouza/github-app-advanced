@@ -19,7 +19,6 @@ const validate = ({ total, activePage }) => {
 }
 
 const pagination = ({ total = 1, activePage = 1 } = {}) => {
-
   validate({ total, activePage })
 
   if (total < 6) {
